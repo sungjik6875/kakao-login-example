@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+    <div>
+        <h1>Hello Home</h1>
+    </div>
+    <div>
+        <img src="../static/kakao_login.png" onclick="getKakaoLoginPage()" style="cursor: pointer;">
+    </div>
+</body>
+<script>
+    const kakakoAuthInfo = {
+        clientId: "", // REST API KEY
+        clientSecret: "",
+        redirectUri: ""
+    }
+
+    const url = `https://kauth.kakao.com/oauth/authorize?client_id=${kakakoAuthInfo.clientId}&redirect_uri=${kakakoAuthInfo.redirectUri}&client_secret=${kakakoAuthInfo.clientSecret}&response_type=code`
+
+    async function getKakaoLoginPage() {
+        const response = await fetch(url,
+            {
+                method: 'GET',
+                mode: 'no-cors',
+                referrer: '',
+                redirect: 'follow',
+                keepalive: true
+            }
+        ).then( result =>
+            console.log(result)
+        )
+        return response
+    }
+</script>
+</html>
